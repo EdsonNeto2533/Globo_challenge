@@ -7,7 +7,9 @@ data class MovieResponse(
     @SerializedName("id")
     val id: Int,
     @SerializedName("poster_path")
-    val posterPath: String
+    val posterPath: String,
+    @SerializedName("original_title")
+    val movieName: String
 ) {
     fun getPostUrl() : String {
         return Constants.IMAGE_PATH + posterPath
