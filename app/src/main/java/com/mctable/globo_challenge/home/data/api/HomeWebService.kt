@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface HomeWebService {
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("api_key") api_key: String = Constants.API_KEY,
         @Query("page") page: Int,
