@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home_screen_populars">Populars</string>
+    <string name="home_screen_upcoming">Upcoming Movies</string>
+    <string name="home_screen_now_playing">Now Playing</string>
 </resources>

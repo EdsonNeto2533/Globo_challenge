@@ -20,11 +20,41 @@ class HomeViewModel @Inject constructor(
     private val _popularsMovies = MutableSharedFlow<List<MovieResponse>>()
     val popularsMovies = _popularsMovies.asSharedFlow()
 
-    fun getPopularsMovies() {
+    private val _upcomingMovies = MutableSharedFlow<List<MovieResponse>>()
+    val upcomingMovies = _upcomingMovies.asSharedFlow()
+
+    private val _nowPlayingMovies = MutableSharedFlow<List<MovieResponse>>()
+    val nowPlayingMovies = _nowPlayingMovies.asSharedFlow()
+
+    init {
+        getPopularsMovies()
+        getUpcomingMovies()
+        getNowPlayingMovies()
+    }
+
+    private fun getPopularsMovies() {
         viewModelScope.launch {
             val response = homeRepository.getPopularMovies(1)
             response?.let {
                 _popularsMovies.emit(it)
+            }
+        }
+    }
+
+    private fun getUpcomingMovies() {
+        viewModelScope.launch {
+            val response = homeRepository.getPopularMovies(1)
+            response?.let {
+                _upcomingMovies.emit(it)
+            }
+        }
+    }
+
+    private fun getNowPlayingMovies() {
+        viewModelScope.launch {
+            val response = homeRepository.getPopularMovies(1)
+            response?.let {
+                _nowPlayingMovies.emit(it)
             }
         }
     }

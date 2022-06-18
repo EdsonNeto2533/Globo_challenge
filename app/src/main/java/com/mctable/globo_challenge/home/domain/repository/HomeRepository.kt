@@ -15,4 +15,16 @@ class HomeRepository @Inject constructor(private val homeWebService: HomeWebServ
             checkResponse(homeWebService.getPopularMovies(page = page))?.results
         }
     }
+
+    suspend fun getNowPlayingMovies(page: Int): List<MovieResponse>? {
+        return withContext(Dispatchers.Default) {
+            checkResponse(homeWebService.getNowPlaying(page = page))?.results
+        }
+    }
+
+    suspend fun getUpcomingMovies(page: Int): List<MovieResponse>? {
+        return withContext(Dispatchers.Default) {
+            checkResponse(homeWebService.getUpcomingMovies(page = page))?.results
+        }
+    }
 }
