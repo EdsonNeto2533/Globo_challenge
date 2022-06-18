@@ -9,5 +9,5 @@ sealed class NavigationRoutes(val route: String) {
 
     object Splash : NavigationRoutes(SPLASH_ROUTE)
 
-    object Home : NavigationRoutes(SPLASH_ROUTE)
+    object Home : NavigationRoutes(HOME_ROUTE)
 }
