@@ -1,6 +1,7 @@
 package com.mctable.globo_challenge.commons.components
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -12,7 +13,7 @@ import com.mctable.globo_challenge.home.data.response.MovieResponse
 fun HorizontalMovieList(
     movieList: List<MovieResponse>
 ) {
-    LazyRow(modifier = Modifier.padding(16.dp)) {
+    LazyRow(modifier = Modifier.padding(16.dp).wrapContentHeight()) {
         items(items = movieList, itemContent = {
             CardMovie(movieResponse = it)
         })

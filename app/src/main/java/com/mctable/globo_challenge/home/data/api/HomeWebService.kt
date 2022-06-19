@@ -14,13 +14,13 @@ interface HomeWebService {
         @Query("page") page: Int,
     ): Response<BaseResponse>
 
-    @GET("/movie/now_playing")
+    @GET("movie/now_playing")
     suspend fun getNowPlaying(
         @Query("api_key") api_key: String = Constants.API_KEY,
         @Query("page") page: Int,
     ): Response<BaseResponse>
 
-    @GET("/movie/upcoming")
+    @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
         @Query("api_key") api_key: String = Constants.API_KEY,
         @Query("page") page: Int,

@@ -28,8 +28,6 @@ class HomeViewModel @Inject constructor(
 
     init {
         getPopularsMovies()
-        getUpcomingMovies()
-        getNowPlayingMovies()
     }
 
     private fun getPopularsMovies() {
@@ -37,22 +35,24 @@ class HomeViewModel @Inject constructor(
             val response = homeRepository.getPopularMovies(1)
             response?.let {
                 _popularsMovies.emit(it)
+                getUpcomingMovies()
             }
         }
     }
 
     private fun getUpcomingMovies() {
         viewModelScope.launch {
-            val response = homeRepository.getPopularMovies(1)
+            val response = homeRepository.getUpcomingMovies(1)
             response?.let {
                 _upcomingMovies.emit(it)
+                getNowPlayingMovies()
             }
         }
     }
 
     private fun getNowPlayingMovies() {
         viewModelScope.launch {
-            val response = homeRepository.getPopularMovies(1)
+            val response = homeRepository.getNowPlayingMovies(1)
             response?.let {
                 _nowPlayingMovies.emit(it)
             }

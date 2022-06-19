@@ -30,12 +30,12 @@ import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
     val popularMovies = viewModel.popularsMovies.collectAsState(initial = emptyList())
-    val upcomingMovies = viewModel.popularsMovies.collectAsState(initial = emptyList())
-    val nowPlayingMovies = viewModel.popularsMovies.collectAsState(initial = emptyList())
+    val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = emptyList())
+    val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsState(initial = emptyList())
     val scrollStateVertical = rememberScrollState()
     Scaffold(
         modifier = Modifier
-            .fillMaxSize(),
+            .wrapContentHeight(),
         topBar = {
             HomeAppBar(context = context)
         },
@@ -43,7 +43,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
     ) {
         Column(
             modifier = Modifier
-                .verticalScroll(scrollStateVertical)
+                .verticalScroll(scrollStateVertical),
         ) {
             LabelList(
                 label = context.getString(R.string.home_screen_populars),
@@ -53,7 +53,6 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 label = context.getString(R.string.home_screen_upcoming),
                 moviesList = upcomingMovies.value,
             )
-
             LabelList(
                 label = context.getString(R.string.home_screen_now_playing),
                 moviesList = nowPlayingMovies.value,
@@ -85,13 +84,13 @@ fun LabelList(label: String, moviesList: List<MovieResponse>) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 16.dp)
     ) {
         Text(
             text = label,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = Color.White,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
         )
     }
     HorizontalMovieList(movieList = moviesList)
