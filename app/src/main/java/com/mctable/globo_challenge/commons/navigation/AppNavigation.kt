@@ -11,7 +11,9 @@ import androidx.navigation.navArgument
 import com.mctable.globo_challenge.commons.utils.Arguments
 import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 import com.mctable.globo_challenge.home.ui.views.HomeScreen
+import com.mctable.globo_challenge.moviedetails.ui.view.MovieDetailsScreen
 import com.mctable.globo_challenge.splash.ui.components.SplashScreen
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun AppNavGraph() {
@@ -35,7 +37,8 @@ fun AppNavGraph() {
             route = NavigationRoutes.Details.route,
             arguments = listOf(navArgument(Arguments.MOVIE_ID_ARG) { type = NavType.StringType })
         ) {
-            println(it.arguments?.getString(Arguments.MOVIE_ID_ARG))
+            val movieId = it.arguments?.getString(Arguments.MOVIE_ID_ARG) ?: "0"
+            MovieDetailsScreen(viewModel = hiltViewModel(), movieId = movieId.toInt())
         }
     }
 }
