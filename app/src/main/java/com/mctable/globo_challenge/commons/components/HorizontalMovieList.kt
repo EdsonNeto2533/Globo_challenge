@@ -8,14 +8,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mctable.globo_challenge.home.data.response.MovieResponse
+import com.mctable.globo_challenge.home.data.response.MoviesUIState
 
 @Composable
 fun HorizontalMovieList(
-    movieList: List<MovieResponse>
+    state: MoviesUIState
 ) {
-    LazyRow(modifier = Modifier.padding(16.dp).wrapContentHeight()) {
-        items(items = movieList, itemContent = {
-            CardMovie(movieResponse = it)
-        })
+    when (state) {
+        is MoviesUIState.Success -> {
+            LazyRow(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .wrapContentHeight()
+            ) {
+                items(items = state.moviesList, itemContent = {
+                    CardMovie(movieResponse = it)
+                })
+            }
+        }
+        MoviesUIState.Loading -> {
+            LazyRow(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .wrapContentHeight()
+            ) {
+                items(items = listOf(1, 2, 3, 4, 5), itemContent = {
+                    CardMovieShimmer()
+                })
+            }
+        }
     }
+
 }

@@ -1,8 +1,10 @@
 package com.mctable.globo_challenge.home.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mctable.globo_challenge.home.data.response.MovieResponse
+import com.mctable.globo_challenge.home.data.response.MoviesUIState
 import com.mctable.globo_challenge.home.domain.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,13 +19,13 @@ class HomeViewModel @Inject constructor(
 
     private var currentPage = 1
 
-    private val _popularsMovies = MutableSharedFlow<List<MovieResponse>>()
+    private val _popularsMovies = MutableSharedFlow<MoviesUIState>()
     val popularsMovies = _popularsMovies.asSharedFlow()
 
-    private val _upcomingMovies = MutableSharedFlow<List<MovieResponse>>()
+    private val _upcomingMovies = MutableSharedFlow<MoviesUIState>()
     val upcomingMovies = _upcomingMovies.asSharedFlow()
 
-    private val _nowPlayingMovies = MutableSharedFlow<List<MovieResponse>>()
+    private val _nowPlayingMovies = MutableSharedFlow<MoviesUIState>()
     val nowPlayingMovies = _nowPlayingMovies.asSharedFlow()
 
     init {
@@ -34,7 +36,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = homeRepository.getPopularMovies(1)
             response?.let {
-                _popularsMovies.emit(it)
+                _popularsMovies.emit(MoviesUIState.Success(it))
                 getUpcomingMovies()
             }
         }
@@ -44,7 +46,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = homeRepository.getUpcomingMovies(1)
             response?.let {
-                _upcomingMovies.emit(it)
+                _upcomingMovies.emit(MoviesUIState.Success(it))
                 getNowPlayingMovies()
             }
         }
@@ -54,7 +56,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = homeRepository.getNowPlayingMovies(1)
             response?.let {
-                _nowPlayingMovies.emit(it)
+                _nowPlayingMovies.emit(MoviesUIState.Success(it))
             }
         }
     }

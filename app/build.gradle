@@ -84,4 +84,7 @@ dependencies {
 
     //Coil
     implementation "io.coil-kt:coil-compose:2.1.0"
+
+    //Shimmer
+    implementation 'com.valentinilk.shimmer:compose-shimmer:1.0.3'
 }

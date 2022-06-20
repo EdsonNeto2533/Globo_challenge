@@ -24,14 +24,15 @@ import com.mctable.globo_challenge.R
 import com.mctable.globo_challenge.commons.components.HorizontalMovieList
 import com.mctable.globo_challenge.commons.theme.GrayBackground
 import com.mctable.globo_challenge.home.data.response.MovieResponse
+import com.mctable.globo_challenge.home.data.response.MoviesUIState
 import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
-    val popularMovies = viewModel.popularsMovies.collectAsState(initial = emptyList())
-    val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = emptyList())
-    val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsState(initial = emptyList())
+    val popularMovies = viewModel.popularsMovies.collectAsState(initial = MoviesUIState.Loading)
+    val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = MoviesUIState.Loading)
+    val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsState(initial = MoviesUIState.Loading)
     val scrollStateVertical = rememberScrollState()
     Scaffold(
         modifier = Modifier
@@ -47,15 +48,15 @@ fun HomeScreen(viewModel: HomeViewModel) {
         ) {
             LabelList(
                 label = context.getString(R.string.home_screen_populars),
-                moviesList = popularMovies.value,
+                state = popularMovies.value,
             )
             LabelList(
                 label = context.getString(R.string.home_screen_upcoming),
-                moviesList = upcomingMovies.value,
+                state = upcomingMovies.value,
             )
             LabelList(
                 label = context.getString(R.string.home_screen_now_playing),
-                moviesList = nowPlayingMovies.value,
+                state = nowPlayingMovies.value,
             )
         }
     }
@@ -80,7 +81,7 @@ fun HomeAppBar(context: Context) {
 }
 
 @Composable
-fun LabelList(label: String, moviesList: List<MovieResponse>) {
+fun LabelList(label: String, state: MoviesUIState) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,5 +94,5 @@ fun LabelList(label: String, moviesList: List<MovieResponse>) {
             modifier = Modifier.padding(start = 16.dp, top = 16.dp)
         )
     }
-    HorizontalMovieList(movieList = moviesList)
+    HorizontalMovieList(state)
 }
