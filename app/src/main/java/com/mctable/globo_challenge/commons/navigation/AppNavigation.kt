@@ -28,14 +28,14 @@ fun AppNavGraph() {
         }
 
         composable(route = NavigationRoutes.Home.route) {
-            HomeScreen(viewModel = hiltViewModel())
+            HomeScreen(viewModel = hiltViewModel(), navController = navController)
         }
 
         composable(
             route = NavigationRoutes.Details.route,
-            arguments = listOf(navArgument(Arguments.MOVIE_ID_ARG) { type = NavType.IntType })
+            arguments = listOf(navArgument(Arguments.MOVIE_ID_ARG) { type = NavType.StringType })
         ) {
-//            it.arguments?.getString(Arguments.MOVIE_ID_ARG)
+            println(it.arguments?.getString(Arguments.MOVIE_ID_ARG))
         }
     }
 }

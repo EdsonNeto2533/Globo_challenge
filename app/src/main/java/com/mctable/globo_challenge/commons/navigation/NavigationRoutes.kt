@@ -6,6 +6,8 @@ sealed class NavigationRoutes(val route: String) {
         private const val SPLASH_ROUTE = "splash_screen"
         private const val HOME_ROUTE = "home_screen"
         private const val DETAILS_ROUTE = "details_screen/{movieId}"
+
+        const val DETAILS_BASE_ROUTE = "details_screen/"
     }
 
     object Splash : NavigationRoutes(SPLASH_ROUTE)

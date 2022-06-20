@@ -20,15 +20,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.mctable.globo_challenge.R
 import com.mctable.globo_challenge.commons.components.HorizontalMovieList
+import com.mctable.globo_challenge.commons.navigation.NavigationRoutes
 import com.mctable.globo_challenge.commons.theme.GrayBackground
 import com.mctable.globo_challenge.home.data.response.MovieResponse
 import com.mctable.globo_challenge.home.data.response.MoviesUIState
 import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     val context = LocalContext.current
     val popularMovies = viewModel.popularsMovies.collectAsState(initial = MoviesUIState.Loading)
     val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = MoviesUIState.Loading)
@@ -50,14 +52,17 @@ fun HomeScreen(viewModel: HomeViewModel) {
             LabelList(
                 label = context.getString(R.string.home_screen_populars),
                 state = popularMovies.value,
+                navController = navController
             )
             LabelList(
                 label = context.getString(R.string.home_screen_upcoming),
                 state = upcomingMovies.value,
+                navController = navController
             )
             LabelList(
                 label = context.getString(R.string.home_screen_now_playing),
                 state = nowPlayingMovies.value,
+                navController = navController
             )
         }
     }
@@ -82,7 +87,7 @@ fun HomeAppBar(context: Context) {
 }
 
 @Composable
-fun LabelList(label: String, state: MoviesUIState) {
+fun LabelList(label: String, state: MoviesUIState, navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -96,6 +101,6 @@ fun LabelList(label: String, state: MoviesUIState) {
         )
     }
     HorizontalMovieList(state) {
-        println(it)
+        navController.navigate("${NavigationRoutes.DETAILS_BASE_ROUTE}${it.id}")
     }
 }
