@@ -32,7 +32,8 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
     val popularMovies = viewModel.popularsMovies.collectAsState(initial = MoviesUIState.Loading)
     val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = MoviesUIState.Loading)
-    val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsState(initial = MoviesUIState.Loading)
+    val nowPlayingMovies =
+        viewModel.nowPlayingMovies.collectAsState(initial = MoviesUIState.Loading)
     val scrollStateVertical = rememberScrollState()
     Scaffold(
         modifier = Modifier
@@ -94,5 +95,7 @@ fun LabelList(label: String, state: MoviesUIState) {
             modifier = Modifier.padding(start = 16.dp, top = 16.dp)
         )
     }
-    HorizontalMovieList(state)
+    HorizontalMovieList(state) {
+        println(it)
+    }
 }

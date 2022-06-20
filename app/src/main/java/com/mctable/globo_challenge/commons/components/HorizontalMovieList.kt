@@ -1,5 +1,6 @@
 package com.mctable.globo_challenge.commons.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
@@ -12,7 +13,8 @@ import com.mctable.globo_challenge.home.data.response.MoviesUIState
 
 @Composable
 fun HorizontalMovieList(
-    state: MoviesUIState
+    state: MoviesUIState,
+    movieClicked: (MovieResponse) -> Unit
 ) {
     when (state) {
         is MoviesUIState.Success -> {
@@ -22,7 +24,9 @@ fun HorizontalMovieList(
                     .wrapContentHeight()
             ) {
                 items(items = state.moviesList, itemContent = {
-                    CardMovie(movieResponse = it)
+                    CardMovie(movieResponse = it, modifier = Modifier.clickable {
+                        movieClicked.invoke(it)
+                    })
                 })
             }
         }

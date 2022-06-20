@@ -12,12 +12,16 @@ import com.mctable.globo_challenge.home.data.response.MovieResponse
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-fun CardMovie(movieResponse: MovieResponse) {
+fun CardMovie(
+    movieResponse: MovieResponse,
+    modifier: Modifier = Modifier
+) {
     Box(
         modifier = Modifier
             .width(150.dp)
             .height(200.dp)
             .padding(end = 8.dp)
+            .then(modifier)
     ) {
         AsyncImage(
             model = movieResponse.getPostUrl(),
