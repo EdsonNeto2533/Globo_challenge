@@ -5,5 +5,5 @@ import com.mctable.globo_challenge.moviedetails.ui.viewModel.MovieDetailsViewMod
 
 @Composable
 fun MovieDetailsScreen(viewModel: MovieDetailsViewModel, movieId: Int) {
-    viewModel.getMovieDetails(movieId)
+   viewModel.getMovieDetails(movieId)
 }
