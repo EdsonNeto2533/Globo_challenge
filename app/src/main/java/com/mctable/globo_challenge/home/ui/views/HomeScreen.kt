@@ -1,10 +1,6 @@
 package com.mctable.globo_challenge.home.ui.views
 
 import android.content.Context
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,8 +21,7 @@ import com.mctable.globo_challenge.R
 import com.mctable.globo_challenge.commons.components.HorizontalMovieList
 import com.mctable.globo_challenge.commons.navigation.NavigationRoutes
 import com.mctable.globo_challenge.commons.theme.GrayBackground
-import com.mctable.globo_challenge.home.data.response.MovieResponse
-import com.mctable.globo_challenge.home.data.response.MoviesUIState
+import com.mctable.globo_challenge.home.domain.sealedclass.MoviesUIState
 import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 
 @Composable

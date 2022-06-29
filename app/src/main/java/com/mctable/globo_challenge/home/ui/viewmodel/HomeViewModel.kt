@@ -1,11 +1,9 @@
 package com.mctable.globo_challenge.home.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mctable.globo_challenge.home.data.response.MovieResponse
-import com.mctable.globo_challenge.home.data.response.MoviesUIState
 import com.mctable.globo_challenge.home.domain.repository.HomeRepository
+import com.mctable.globo_challenge.home.domain.sealedclass.MoviesUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
