@@ -38,7 +38,11 @@ fun AppNavGraph() {
             arguments = listOf(navArgument(Arguments.MOVIE_ID_ARG) { type = NavType.StringType })
         ) {
             val movieId = it.arguments?.getString(Arguments.MOVIE_ID_ARG) ?: "0"
-            MovieDetailsScreen(viewModel = hiltViewModel(), movieId = movieId.toInt())
+            MovieDetailsScreen(
+                viewModel = hiltViewModel(),
+                movieId = movieId.toInt(),
+                navController = navController
+            )
         }
     }
 }

@@ -3,4 +3,8 @@
     <!-- region splash screen -->
     <string name="content_description_logo">Globo Play</string>
     <!-- endregion -->
+
+    <!-- region Movie Details -->
+    <string name="content_description_arrow_back">Return</string>
+    <!-- endregion -->
 </resources>
