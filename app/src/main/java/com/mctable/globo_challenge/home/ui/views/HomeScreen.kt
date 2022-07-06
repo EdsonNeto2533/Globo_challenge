@@ -1,15 +1,12 @@
 package com.mctable.globo_challenge.home.ui.views
 
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -18,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.mctable.globo_challenge.R
+import com.mctable.globo_challenge.commons.components.DefaultAppBar
 import com.mctable.globo_challenge.commons.components.HorizontalMovieList
 import com.mctable.globo_challenge.commons.navigation.NavigationRoutes
 import com.mctable.globo_challenge.commons.theme.GrayBackground
@@ -36,7 +34,10 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
         modifier = Modifier
             .wrapContentHeight(),
         topBar = {
-            HomeAppBar(context = context)
+            DefaultAppBar(
+                title = context.getString(R.string.app_name),
+                hasArrowBack = false
+            )
         },
         backgroundColor = GrayBackground
     ) {
@@ -61,24 +62,6 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
             )
         }
     }
-}
-
-@Composable
-fun HomeAppBar(context: Context) {
-    TopAppBar(
-        backgroundColor = Color.Black,
-        title = {
-            Box(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = context.getString(R.string.app_name),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-        }
-    )
 }
 
 @Composable
