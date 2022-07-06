@@ -26,11 +26,7 @@ class HomeViewModel @Inject constructor(
     private val _nowPlayingMovies = MutableSharedFlow<MoviesUIState>()
     val nowPlayingMovies = _nowPlayingMovies.asSharedFlow()
 
-    init {
-        getPopularsMovies()
-    }
-
-    private fun getPopularsMovies() {
+    fun getPopularsMovies() {
         viewModelScope.launch {
             val response = homeRepository.getPopularMovies(1)
             response?.let {

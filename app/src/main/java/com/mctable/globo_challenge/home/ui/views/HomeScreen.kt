@@ -25,6 +25,7 @@ import com.mctable.globo_challenge.home.ui.viewmodel.HomeViewModel
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     val context = LocalContext.current
+    viewModel.getPopularsMovies()
     val popularMovies = viewModel.popularsMovies.collectAsState(initial = MoviesUIState.Loading)
     val upcomingMovies = viewModel.upcomingMovies.collectAsState(initial = MoviesUIState.Loading)
     val nowPlayingMovies =
