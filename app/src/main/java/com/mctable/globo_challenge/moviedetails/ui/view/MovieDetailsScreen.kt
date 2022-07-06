@@ -6,7 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.mctable.globo_challenge.commons.components.DefaultAppBar
+import com.mctable.globo_challenge.home.data.response.MovieResponse
 import com.mctable.globo_challenge.moviedetails.domain.sealedclass.MovieDetailsUIState
 import com.mctable.globo_challenge.moviedetails.ui.viewModel.MovieDetailsViewModel
 
@@ -32,4 +34,9 @@ fun MovieDetailsScreen(
     ) {
 
     }
+}
+
+@Composable
+fun BluredImage(movieResponse: MovieResponse) {
+
 }

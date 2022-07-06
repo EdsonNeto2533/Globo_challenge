@@ -2,6 +2,7 @@ package com.mctable.globo_challenge.moviedetails.data.api
 
 import com.mctable.globo_challenge.commons.utils.Constants
 import com.mctable.globo_challenge.home.data.response.MovieResponse
+import com.mctable.globo_challenge.moviedetails.data.response.MovieDetailsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,6 +14,6 @@ interface MovieDetailsWebService {
     suspend fun getMovieDetails(
         @Path("movieId") movieId: Int,
         @Query("api_key") api_key: String = Constants.API_KEY
-    ): Response<MovieResponse>
+    ): Response<MovieDetailsResponse>
 
 }
